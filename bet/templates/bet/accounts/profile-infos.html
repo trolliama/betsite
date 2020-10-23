@@ -1,0 +1,78 @@
+{% extends "bet/accounts/profile.html" %}
+{% load static %}
+
+{% block profile-content %}
+<div class="col-lg-8">
+    <!-- .card -->
+    {% include "bet/accounts/profile-vip-message.html" %}
+
+    <div class="card card-fluid">
+      <h6 class="card-header"> Account </h6>
+      <!-- .card-body -->
+      <div class="card-body">
+        {% for message in messages %}
+        <div class="text-center alert {% if message.tags != "success" %}alert-danger{% else %} alert-success{% endif %} alert-dismissible fade show" role="alert">
+            {{message}}
+            
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        <!-- form -->
+        <form method="post">
+          {% csrf_token %}
+          <!-- form row -->
+          <div class="form-row">
+            <!-- form column -->
+            <div class="col-md-6 mb-3">
+              <label for="input01">Nome</label>
+              <input type="text" class="form-control" value="{{user.first_name}}" name="first_name" maxlength="80" required id="id_first_name"> </div>
+            <!-- /form column -->
+            <!-- form column -->
+            <div class="col-md-6 mb-3">
+              <label for="input02">Sobrenome</label>
+              <input type="text" class="form-control" value="{{user.last_name}}" name="last_name" maxlength="80" required id="id_last_name"> </div>
+            <!-- /form column -->
+          </div>
+          <!-- /form row -->
+          <!-- .form-group -->
+          <div class="form-group">
+            <label for="input03">Email</label>
+            <input class="form-control" value="{{user.email}}" type="email" name="email" maxlength="255" required id="id_email"> </div>
+          <!-- /.form-group -->
+          <!-- .form-group -->
+          <div class="form-row">
+            <div class="col">
+              <label for="input05">Username</label>
+              <input class="form-control" value="{{user.username}}" type="text" name="username" maxlength="150" required id="id_username">
+            </div>
+            <div class="col">
+              <label for="input05">Phone</label>
+              <input type="text" class="form-control" value="{{user.phone}}" name="phone" maxlength="16" id="id_phone">
+            </div>
+          </div>
+          <!-- /.form-group -->
+          <hr>
+          <!-- .form-actions -->
+          <div class="d-flex form-actions">
+            <!-- enable submit btn when user type their current password -->
+              <button type="submit" class="ml-auto btn update">Alterar Dados</button>
+          </div>
+          <!-- /.form-actions -->
+        </form>
+        <!-- /form -->
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+  <!-- /grid column -->
+{% endblock %}
+
+{% block profile_scripts %}
+  <script src="{% static "libraries/jquery/jquery.mask.min.js" %}"></script>
+  <script>
+    $("#id_phone").mask('(00) 00000-0000');
+  </script>
+{% endblock %}

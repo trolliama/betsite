@@ -1,0 +1,232 @@
+{% extends "bet/base.html" %}
+{% load static %}
+
+{% block css_links %}
+<link rel="stylesheet" href="{% static "css/pagamento.css" %}">
+{% endblock %}
+
+{% block content %}
+
+<section id="pagamento">
+  {% for message in messages %}
+    <div class="text-center alert alert-danger alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  {% endfor %}
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="{% static "images/cards-256.png" %}" alt="" width="72" height="72">
+    <h2>Pagamento</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Carrinho</span>
+        <span class="badge badge-secondary badge-pill">1</span>
+      </h4>
+      <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between">
+          <div>
+            <h6 class="my-0">{{nome}}</h6>
+          </div>
+          <span class="text-muted">R${{preco}}</span>
+          <input id="item-price" value="{{preco}}" style="display: none;">
+        </li>
+        <div id="credit-items">
+          <li id="item-parcelas" class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0"></h6>
+              <small>Parcelas</small>
+            </div>
+            <span class="text-success"></span>
+          </li>
+          <li id="item-total" class="list-group-item d-flex justify-content-between">
+            <span>Total</span>
+            <strong></strong>
+          </li>
+        </div>
+      </ul>
+
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Endereço de cobrança</h4>
+      <form class="needs-validation" method="POST" novalidate>
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Nome *</label>
+            <input name="firstName" type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Requer nome válido.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Sobrenome *</label>
+            <input name="lastName" type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="invalid-feedback">
+              Requer sobrenome válido.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <label for="cpf">CPF/CNPJ *</label>
+            <input name="cpf" type="text" class="control-form" id="cpf" placeholder="ex: 777.777.777-77" required>
+            <div class="invalid-feedback">
+              Campo inválido, tenha certeza de colocar um cpf/cnpj válido.
+            </div>
+          </div>
+          <div class="col mb-3">
+            <label for="celular">Celular*</label>
+            <input name="celular" type="text" class="form-control" id="celular" placeholder="ex: (99) 99999-9999" required>
+            <div class="invalid-feedback">
+              Número inválido
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="cep">CEP *</label>
+            <input name="cep" type="text" class="control-form" id="cep" placeholder="ex: 00000-000" required>
+            <div class="invalid-feedback">
+              CEP inválido
+            </div>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="estado">Estado *</label>
+            <select name="estado" class="custom-select d-block w-100" id="estado" required>
+            </select>
+            <div class="invalid-feedback">
+              Por favor escolha um estado.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="cidade">Cidade *</label>
+            <select name="cidade" class="custom-select d-block w-100" id="cidade" required>
+            </select>
+            <div class="invalid-feedback">
+              Por favor escolha uma cidade.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="rua">Rua *</label>
+            <input name="rua" type="text" class="form-control" id="rua" required>
+            <div class="invalid-feedback">
+              Por favor coloque sua rua.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="bairro">Bairro *</label>
+            <input name="bairro" type="text" class="form-control" id="bairro" required>
+            <div class="invalid-feedback">
+              Por favor coloque seu bairro.
+            </div>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="numero">Número *</label>
+            <input name="numero" type="text" class="form-control" id="numero" required>
+            <div class="invalid-feedback">
+              Por favor coloque seu número.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="complemento">Complemento (opcional)</label>
+            <input name="complemento" type="text" class="form-control" id="complemento">
+          </div>
+        </div>
+        <hr class="mb-4">
+
+        <h4 class="mb-3">Pagamento</h4>
+        <span id="pagamento-invalido" class="invalid-feedback">Há informações no cartão de crédito que não são válidas</span>
+
+        <div class="d-block my-3">
+          <div class="custom-control custom-radio">
+            <input id="credit" name="paymentMethod" value="creditcard" type="radio" class="custom-control-input" minlength="1" maxlength="50" checked required>
+            <label class="custom-control-label green" for="credit">Cartão de crédito</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="boleto" name="paymentMethod" value="boleto" type="radio" class="custom-control-input" required>
+            <label class="custom-control-label green" for="boleto">Boleto</label>
+          </div>
+        </div>
+        <div id="credit-card-infos">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cc-name">Nome no cartão *</label>
+              <input name="cc-name" pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-muted">Nome completo como está no cartão</small>
+              <div class="invalid-feedback">
+                Nome no cartão é necessário e deve estar igual ao do cartão.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="cc-number">Número do cartão *</label>
+              <input name="cc-number" type="text" class="control-form" id="cc-number" placeholder="" required>
+              <div class="invalid-feedback">
+                Requer número do cartão de crédito válido.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="cc-expiration">Expiração *</label>
+              <input name="cc-expiration" type="text" class="control-form" id="cc-expiration" placeholder="" required>
+              <div class="invalid-feedback">
+                Requer data de expiração válida.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="cc-cvv">CVV *</label>
+              <input name="cc-cvv" type="text" class="control-form" id="cc-cvv" placeholder="" required>
+              <div class="invalid-feedback">
+                Requer código de segurança válido.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3"></div>
+            <div class="col-md-3 mb-3">
+              <label for="parcelas">Parcelas *</label>
+              <select name="parcelas" class="custom-select d-block w-100" id="parcelas" required>
+              </select>
+            </div>
+          </div>
+        </div>
+        <input id="card-token" type="hidden" name="card-token" value="">
+        <input id="sender-hash" type="hidden" name="sender-hash" value="">
+        <input id="value-parcelas" type="hidden" name="value-parcelas" value="">
+        <hr class="mb-4">
+        <a id="buy" class="btn btn-primary btn-lg btn-block" onClick="submitForm()">Continue para o checkout</a>
+      </form>
+    </div>
+  </div>
+  <br>
+</section>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
+<script src="{% static "libraries/jquery/jquery.mask.min.js" %}"></script>
+<script src="{% static "js/pagseguro-handler.js" %}"></script>
+<script src="{% static "js/pagamento-form.js" %}"></script>
+<script>
+  var number_card=$.trim($("#cc-number").val());
+  var cep_number = $.trim($("#cep").val());
+  
+  sleep(5000).then(() => {
+    if (cep_number.length>0){
+      $("#cep").trigger("blur");
+    }
+    if (number_card.length>0){
+      $("#cc-number").trigger("keyup");
+    }
+  });
+  
+</script>
+{% endblock %}

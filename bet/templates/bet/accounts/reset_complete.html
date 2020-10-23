@@ -1,0 +1,30 @@
+{% extends "bet/base.html" %}
+{% load static %}
+
+{% block css_links %}
+<style>
+    body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+}
+.navbar-brand{
+    padding-left: 8%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  {% include "bet/simple_nav.html" %}
+
+  <main role="main" class="container">
+
+    <div class="starter-template">
+      <h3>Mudança de senha completa.</h3>
+      <p class="lead">Sua senha foi mudada. Você pode fazer login com sua nova senha.</p>
+      <a href="{% url "bet:login" %}">Log in</a>
+    </div>
+
+  </main>
+{% endblock %}

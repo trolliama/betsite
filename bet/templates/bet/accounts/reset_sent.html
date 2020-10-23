@@ -1,0 +1,29 @@
+{% extends "bet/base.html" %}
+{% load static %}
+
+{% block css_links %}
+<style>
+    body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+}
+.navbar-brand{
+    padding-left: 8%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  {% include "bet/simple_nav.html" %}
+
+  <main role="main" class="container">
+
+    <div class="starter-template">
+      <h1>Email de modificação enviado.</h1>
+      <p class="lead">Nós enviamos para você instruções para modificar sua senha. Não esqueça de checar sua caixa de spam.<br> Se você não tiver recebido o email por favor certifique-se que você forneceu o email que você usou para se cadastrar.</p>
+    </div>
+
+  </main>
+{% endblock %}

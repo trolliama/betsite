@@ -1,0 +1,3 @@
+{% load i18n %}{% autoescape off %}
+{% blocktranslate %}Mudança de senha no {{ site_name }}{% endblocktranslate %}
+{% endautoescape %}

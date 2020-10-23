@@ -1,0 +1,52 @@
+{% extends "bet/accounts/profile.html" %}
+
+{% block profile-content %}
+<div class="col-lg-8">
+    <!-- .card -->
+    {% include "bet/accounts/profile-vip-message.html" %}
+
+    <div class="card card-fluid">
+      <h6 class="card-header"> Planos </h6>
+      <!-- .card-body -->
+      <div class="card-body">
+        {% for message in messages %}
+          <div class="text-center alert {% if message.tags != 'success' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+              {{message}} {% if message.tags == "warning" %}<a href="/#planos" class="alert-link">Planos</a>{% endif %}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        {% endfor %}
+        <!-- form -->
+        <form method="post">
+            {% csrf_token %}
+          <!-- form row -->
+          <div class="row ">
+            <div class="col"></div>
+            <div class="col text-center py-4 px-5 rounded" style="background-color: #27ae60; color: white;">
+                Expiração do VIP <br>
+                {{expiration}}
+            </div>
+            <div class="col"></div>
+          </div>
+
+          <hr>
+          <div class="row mb-2">
+              <div class="col">
+                  Mudou de número no telegram? <a href="{% url "bet:request-vip" %}">Requisite novo acesso ao vip</a>
+              </div>
+              <!-- <a class="btn btn-success btn-lg btn-block">VIP</a> -->
+            <!-- /form column -->
+          </div>
+          <!-- /.form-group -->
+          <!-- /.form-actions -->
+        </form>
+        <!-- /form -->
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /grid column -->
+  </div>
+  {% endblock %}

@@ -1,0 +1,5 @@
+Olá {{nome}}, sua compra do vip foi confirmada. Iremos colocá-lo em nosso grupo do telegram.
+
+Por favor não esqueça de verificar se seu número no perfil corresponde ao número cadastrado no telegram.
+
+Obrigado pela sua compra!!

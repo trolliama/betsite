@@ -1,0 +1,50 @@
+{% load static %}
+
+    <section class="nav fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+                <a class="ml-5 pl-5 navbar-brand" onclick="active_link(this)" href="#">
+                    <img src="{% static "images/cards-32.ico" %}" class="d-inline-block align-top" alt="" loading="lazy">
+                    <span id="brand-title">Hackeando <span class="span-brand">a Banca</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" onclick="active_link(this)" href="#">Home</a>
+                    <a class="nav-item nav-link ml-3" onclick="active_link(this)" href="#infos">Infos</a>
+                    <a class="nav-item nav-link ml-3" onclick="active_link(this)" href="#planos">Planos</a>
+                    <a class="nav-item nav-link ml-3" onclick="active_link(this)" href="#contato">Contato</a>
+                    <a class="nav-item nav-link ml-3" href="{% url "bet:faq" tema_pk=faq_tema.pk%}">Faq</a>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item ml-4 dropdown">
+                        <a id="profile-link" class="nav-link dropdown-toggle user-icon" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span style="font-size: 25px;">
+                                <i class="fas fa-user-circle"><span style="margin-left: 5px; font-size: 16px;">Perfil</span></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url "bet:profile" page="infos" %}">Minha conta</a>
+                            <a class="dropdown-item" href="{% url "bet:logout" %}">Sair</a>
+                        </div>
+                    </li>
+                    {% else %}
+                    <a id="profile-link" href="{% url "bet:login" %}" class="nav-item nav-link user-icon ml-4">
+                        <span style="font-size: 25px;"><i class="fas fa-user-circle"><span style="margin-left: 5px; font-size: 16px; text-decoration:underline">Login</span></i></span>
+                    </a>
+                    {% endif %}
+                </div>
+                </div>
+            </nav>
+            
+            {% for message in messages %}
+                <div class="text-center alert {% if success_message == False %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show" role="alert">
+                    {{message}} {% if success_message == False %}<a href="{% url "bet:resend-confirmation" %}" class="alert-link">Resend link</a>{% endif %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </section>

@@ -1,0 +1,58 @@
+{% extends "bet/base.html" %}
+{% load static %}
+
+{% block css_links %}
+<link rel="stylesheet" href="{% static "css/profile.css" %}">
+{% endblock %}
+
+{% block content %}
+<section id="profile">
+  {% include "bet/simple_nav.html" %}
+<div class="container-fluid mt-2">
+<div class="page-inner">
+    <!-- .page-title-bar -->
+    <header class="page-title-bar">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active">
+            <a href="user-profile.html">
+              <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Beni Arisandi
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </header>
+    <!-- /.page-title-bar -->
+    <!-- .page-section -->
+    <div class="page-section">
+      <!-- grid row -->
+      <div class="row">
+        <!-- grid column -->
+        <div class="col-lg-4">
+          <!-- .card -->
+          <div class="card card-fluid">
+            <h6 class="card-header"> Suas informações </h6>
+            <!-- .nav -->
+            <nav class="nav nav-tabs flex-column">
+              <a id='perfil' href="{% url "bet:profile" page="infos"%}" class="nav-link {% if "infos" == page %}active{% endif %}">Perfil</a>
+              <a id='planos' href="{% url "bet:profile" page="planos"%}" class="nav-link {% if "planos" == page %}active{% endif %}">Planos</a>
+              <a id='senha' href="{% url "bet:profile" page="password"%}" class="nav-link {% if "password" == page %}active{% endif %}">Senha</a>
+            </nav>
+            <!-- /.nav -->
+          </div>
+          <!-- /.card -->
+        </div>
+        {% block profile-content %}{% endblock %}
+      </div>
+      <!-- /grid row -->
+    </div>
+    <!-- /.page-section -->
+  </div>
+  <!-- /.page-inner -->
+</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% block profile_scripts %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "bet/base.html" %}
+{% load static %}
+
+{% block css_links %}
+<style>
+    body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+}
+.navbar-brand{
+    padding-left: 8%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% include "bet/simple_nav.html" %}
+
+{% if validlink %}
+
+<div class="container">
+    <div class="col-4">
+        <p>Coloque sua nova senha.</p>
+
+        <form method="post">{% csrf_token %}
+        <fieldset class="module aligned">
+            <input style="display: none;" autocomplete="username" value="{{ form.user.username }}">
+            <div class="form-group field-password1">
+                <label for="id_new_password1">New password:</label>
+                <input class="form-control" type="password" name="new_password1" autocomplete="new-password" required="" id="id_new_password1">
+            </div>
+            <div class="form-group field-password2">
+                <label for="id_new_password2">Confirm password:</label>
+                <input class="form-control" type="password" name="new_password2" autocomplete="new-password" required="" id="id_new_password2">
+            </div>
+                {{ form.new_password1.errors }}
+                {{ form.new_password2.errors }}
+
+            <button value="Change my password" type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+        </form>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+</div>
+
+{% else %}
+
+<p>Link de reset da senha é inválido, possivelmente porque já foi usado. Por favor solicite um novo link.</p>
+
+{% endif %}
+
+{% endblock %}

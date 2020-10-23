@@ -1,0 +1,6 @@
+Oi {{nome}}, notamos que você não cadastrou seu número do telegram em nosso site.
+
+Por favor cadastre-o em seu perfil para que possamos adicioná-lo ao nosso grupo vip
+
+
+Obrigado, atenciosamente {{site}}.

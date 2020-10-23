@@ -1,0 +1,11 @@
+Oi, {{nome}}!
+
+Sua conta no hackeandoAbanca está quase pronta. Para ativá-la, por favor confirme o seu endereço de email clicando no link abaixo.
+
+{{ protocol }}://{{ domain }}/email/confirmation/{{id}}/{{token}}
+
+Sua conta não será ativada até que seu email seja confirmado.
+
+Se você não se cadastrou no hackeando a banca recentemente, por favor ignore este email.
+
+Agradecemos sua participação, {{ protocol }}://{{ domain }}

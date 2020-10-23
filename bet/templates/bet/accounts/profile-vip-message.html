@@ -1,0 +1,9 @@
+{% if not request.user.phone and has_vip %}
+    <div class="text-center alert alert-danger alert-dismissible fade show" role="alert">
+      Coloque um número de celular. Usaremos ele para adicioná-lo ao nosso canal VIP do telegram
+      
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+{% endif %}

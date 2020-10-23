@@ -1,0 +1,9 @@
+Olá {{nome}}, sua compra do curso foi confirmada e com ela você ganha 7 dias de VIP grátis. Iremos colocá-lo em nosso grupo do telegram.
+
+Aqui está o link do curso: 
+
+https://curso.mysite.com
+
+Por favor não esqueça de verificar se seu número no perfil corresponde ao número cadastrado no telegram.
+
+Obrigado pela sua compra!!

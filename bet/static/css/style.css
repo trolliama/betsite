@@ -1,0 +1,316 @@
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url('../fonts/montserrat/Montserrat-Regular.ttf'); 
+  }
+
+
+hr{
+    width: 80%;
+}
+
+
+body{
+    /* background-color: #636e72; */
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+#infos, #contato, #faq, #planos{
+	/* font-family: Montserrat-Regular; */
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+}
+
+#infos, #faq h2{
+    /* color: #fff; */
+}
+.back-white{
+    padding-left:0!important;
+    padding-right:0!important;
+    margin-bottom: 20px;
+    
+}
+
+.nav .container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.nav .navbar-nav a{
+    font-family: Montserrat-Regular;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+#profile-link:hover{
+    cursor: pointer;
+}
+
+.nav .navbar-brand{
+    margin-right: 35%;
+}
+
+.nav .span-brand{
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+
+.user-icon{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.fas, .dropdown-toggle{
+    display: inline-block;
+}
+
+@keyframes dropdown-item-background{
+    from{
+        background-color: transparent;
+        margin-left: 0px;
+        border-radius: 0px;
+    }
+    to{
+        background-color: #216869;
+        margin-left: 8px;
+        border-radius: 2px;
+    }
+}
+.dropdown-item:hover{
+    width: 90%;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    transition: box-shadow 0.7s;
+    animation-name: dropdown-item-background;
+    animation-duration: 0.7s;
+    color: #f2f2f2;
+    background-color: #216869;
+    margin-left: 8px;
+    border-radius: 2px;
+}
+
+#banner{
+    background-image: url(../images/desktop-banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-attachment: fixed;*/
+    background-position: center;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    /*box-shadow: 0px 900px rgba(0, 0, 0, 0.6) inset;*/
+    box-shadow: 0px 900px rgba(73, 160, 120, 0.8) inset;
+    /* box-shadow: 0px 900px rgba(92, 219, 149, 0.9) inset; */
+    /*box-shadow: 0px 900px rgba(55, 150, 131, 0.95) inset;*/
+    color: #ffffff;
+}
+
+#infos{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+#infos .container{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#left-info{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#right-info{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#infos a{
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: center;
+}
+
+#infos h4{
+    /* text-shadow: 3px 3px 1px#54ca93; */
+}
+
+#planos{
+    background-color: #f2f2fe;
+    padding-top: 30px;
+    padding-bottom: 60px;
+	font-size: 16px;
+}
+
+
+#planos .card{
+    border-radius: 15px;
+}
+
+#planos .c-header{
+    margin-top: 25px;
+}
+
+#planos .card-title{
+    background-color: #49a078;
+    font-size: 30px;
+    padding: 40px 20px 40px 20px;
+    margin: 0px 20px 40px 20px;
+    border-radius: 25px;
+    color: #ffffff;
+}
+
+#planos #buy{
+    border-color:  #343a40;
+    color:  #343a40;
+    border-radius: 40px;
+    transition: border-radius 0.5s;
+}
+
+#planos #buy:hover{
+    background-color:  #343a40;
+    color: #ffffff;
+    border-radius: 4px;
+    transition: border-radius 0.5s;
+}
+
+#planos #telegram{
+    border-radius: 18px;
+}
+
+#planos h3{
+    /* text-shadow: 3px 3px 1px#54ca93; */
+}
+
+#depoimentos{
+    background-image: url(../images/banner6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background-attachment: fixed;*/
+    background-position: center;
+    padding-top: 100px;
+    padding-bottom: 125px;
+    /* box-shadow: 0px 900px rgba(0, 0, 0, 0.6) inset; */
+    box-shadow: 0px 900px rgba(73, 160, 120, 0.8) inset;
+
+    /* box-shadow: 0px 900px rgba(55, 150, 131, 0.9) inset; */
+}
+
+@keyframes grow{
+    from{
+        height: 80px;
+        width: 80px;
+    }
+    to{
+        height: 90px;
+        width: 90px;
+    }
+}
+
+#depoimentos img{
+    height: 80px;
+    width: 80px;
+}
+
+#depoimentos img:hover{
+    animation-duration: 0.25s;
+    animation-name: grow;
+
+    height: 90px;
+    width: 90px;
+
+    cursor: pointer;
+}
+
+.rounded-corners-gradient-borders {
+    width: 300px;
+    height: 80px;
+    border: double 4px transparent;
+    border-radius: 80px;
+    /* background-image: linear-gradient(white, white), radial-gradient(circle at top left, #ff512f,#dd2476); */
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f00,#3020ff);
+    /* background-image: linear-gradient(white, white), radial-gradient(circle at top left, #43cea2,#185a9d); */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+  }
+
+#contato{
+    background-color: #f2f2f2;
+    padding-top: 30px;
+}
+
+#footer-gap{
+    background-color: #f2f2f2;
+    padding: 50px;
+}
+
+footer{
+    background-color: #f2f2f2;
+    color: #636e72;
+}
+
+
+
+@media (max-width: 760px) {
+
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+
+    .container-contact1 {
+        padding: 90px 80px 88px 80px;
+      }
+    
+    .contact1-form {
+    width: 100%;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* display 3 */
+@media (min-width: 810px) {
+    
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+      transform: translateX(33.333%);
+    }
+    
+    .carousel-inner .carousel-item-left.active, 
+    .carousel-inner .carousel-item-prev {
+      transform: translateX(-33.333%);
+    }
+
+    #plan{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0);
+}
+
+@media(max-width: 500px){
+    #brand-title{
+        display: none;
+    }
+
+}
+
+@media (width: 768px){
+    #contact-img{
+        padding-left: 50%;
+    }
+}
